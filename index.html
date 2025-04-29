@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Assistant - Vanilla JS</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+    }
+
+    header, footer {
+      text-align: center;
+      padding: 2em;
+      background-color: #f0f0f0;
+    }
+
+    main section {
+      height: 100vh;
+      padding: 2em;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+  </style>
+  <script>
+    (function() {
+      const assistant = "b5ec4bce-84f2-4cc4-adc3-8623f5c695cf";
+      const apiKey = "c94e7280-81df-4c64-8aa7-74a08fe27df6";
+      const buttonConfig = {
+        position: "bottom-right",
+        offset: "10px",
+        width: "50px",
+        height: "50px",
+      };
+
+      let vapiInstance = null;
+
+      window.addEventListener("DOMContentLoaded", function () {
+        const script = document.createElement("script");
+        script.src = "assistant-cdn.js";
+        script.defer = true;
+        script.async = true;
+
+        script.onload = function () {
+          if (window.vapiSDK && !vapiInstance) {
+            vapiInstance = window.vapiSDK.run({
+              apiKey,
+              assistant,
+              config: buttonConfig,
+            });
+          }
+        };
+
+        document.body.appendChild(script);
+
+        window.addEventListener("beforeunload", function () {
+          document.body.removeChild(script);
+        });
+      });
+    })();
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Welcome to the AI Assistant Demo</h1>
+    <p>Interact with the embedded assistant for help or suggestions.</p>
+  </header>
+
+  <main>
+    <section id="about">
+      <h2>About This Tool</h2>
+      <p>This page demonstrates embedding an AI assistant into a vanilla JavaScript site using a remote script.</p>
+    </section>
+
+    <section id="features">
+      <h2>Key Features</h2>
+      <ul>
+        <li>Easy integration with minimal setup</li>
+        <li>Supports dynamic configuration</li>
+        <li>Secure API key usage</li>
+      </ul>
+    </section>
+
+    <section id="how-it-works">
+      <h2>How It Works</h2>
+      <p>The assistant script is loaded asynchronously and initialized with your API key and assistant ID. Once loaded, it appears as a button in the bottom-right corner of the screen.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 AI Assistant Integration Demo</p>
+  </footer>
+</body>
+</html>
