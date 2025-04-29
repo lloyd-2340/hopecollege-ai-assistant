@@ -1,0 +1,1 @@
+# hopecollege-ai-assistant
